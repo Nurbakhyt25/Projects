@@ -1,0 +1,56 @@
+#Парсинг открытых данных. Для старта необходимы ники учеников
+
+Accounts = 'Arsenjdjdhj8675','Lambargini','Ayanassas1n','Arsen1407','Akontik','daryn777','AsDiasyl','JanelKasabaeva','Yerke_Kazhiakhmetova','Nikita_Gluhov','Laskutik_18','zangar2013','nurali-champ16','DauletkhanAmangaliev','Arlan_Neutron','nur0506','Aldyar','Khakan_1803','Top4ikTube','Olesha223','Beiner','Azamat5544'
+
+#Cоздаем dataframe
+
+nickname = []
+link = []
+Rapid=[]
+
+#Задаем цикл, импортируем библиотеки в цикле. Вне цикла не работают
+
+for account in Accounts:
+    url=f'https://lichess.org/@/{account}'
+    link.append(f'{url}')
+    
+    from bs4 import BeautifulSoup #библиотека для извлечения данных
+    import requests               #для выполнения запросов
+    from requests import get      
+    
+    r=requests.get(url)
+    r.text
+    soup = BeautifulSoup(r.text, 'lxml')
+    soup.find('div', class_='side sub-ratings')
+    lichess_data = soup.find('div', {'class' : 'side sub-ratings'}).text
+    
+    #Импортируем регулярные выражения, для полученяи необходимых фрагментов в полученной текстовой информации
+    
+    import re
+    
+    result=re.findall(r"Rapid.+Classical", lichess_data)
+    #Задаем цикл для каждого значения переменной
+    for rapid in result:
+        Rapid.append(f'{rapid}')
+        
+#Импортируем библиотеку pandas
+
+import pandas as pd
+
+df=pd.DataFrame()
+df['nickname']=Accounts
+df['link']=link
+df['Rapid']=Rapid
+df.to_excel('1_разряды_20feb_lichess_Rapid.xlsx',index = False)
+
+#После получения данных в формате 'xlsx'. Данные дообрабатываются и выгружаются в общий источник google sheet
+
+https://docs.google.com/spreadsheets/d/1z_O6qnXnD55U_EE5UKlXqv5Wzlw9Zd8rRFTkWY_paVA/edit#gid=92398397
+
+#Далее google sheet становится источником для визуализации данных при помощи PowerBI. 
+Данные обрабатываются и визуализируются, сохраняются на облако PowerBI и полученная html ссылка указывается на сайте:
+
+https://ab-chess.kz/ab-class
+
+#Финальный дашборд
+https://ab-chess.kz/htmlcode
