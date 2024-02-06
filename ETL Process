@@ -1,6 +1,9 @@
 #Парсинг открытых данных. Для старта необходимы ники учеников
 
-Accounts = 'Arsenjdjdhj8675','Lambargini','Ayanassas1n','Arsen1407','Akontik','daryn777','AsDiasyl','JanelKasabaeva','Yerke_Kazhiakhmetova','Nikita_Gluhov','Laskutik_18','zangar2013','nurali-champ16','DauletkhanAmangaliev','Arlan_Neutron','nur0506','Aldyar','Khakan_1803','Top4ikTube','Olesha223','Beiner','Azamat5544'
+Accounts = ['Arsenjdjdhj8675','Lambargini','Ayanassas1n','Arsen1407','Akontik','daryn777',
+'AsDiasyl','JanelKasabaeva','Yerke_Kazhiakhmetova','Nikita_Gluhov','Laskutik_18','zangar2013',
+'nurali-champ16','DauletkhanAmangaliev','Arlan_Neutron','nur0506','Aldyar','Khakan_1803',
+'Top4ikTube','Olesha223','Beiner','Azamat5544']
 
 #Cоздаем dataframe
 
